@@ -8,6 +8,8 @@
 # 2: ProRes422 (Normal)
 # 3: ProRes422 (HQ)
 
+mkdir converted
+
 if file = [*.mkv]
 then
   for file in *.mkv; do ffmpeg -i "$file" -vcodec prores -profile:v 2 -acodec pcm_s16le "${file%.mkv}".mov; done
@@ -32,3 +34,5 @@ if file = [*.avi]
 then
   for file in *.avi; do ffmpeg -i "$file" -vcodec prores -profile:v 2 -acodec pcm_s16le "${file%.avi}".mov; done
 fi
+
+mv *.mov converted/
